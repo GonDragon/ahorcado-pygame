@@ -86,16 +86,16 @@ def pasar_letras_a_guiones_si(palabra, letras_adivinadas):
 def dibujar_victoria(palabra, letras_adivinadas, errores):
     # Mostrar pantalla de victoria, no hace falta que uses todos los argumentos
     cantidad_de_intentos = len(letras_adivinadas) # le asigno la cantidad de intentos ingresados por el usuario a la variable para luego mostrarla.
-    victoria_primer_mensaje = f"¡Haz Ganado! La palabra era {palabra}." # Le 
-    victoria_segundo_mensaje = f"Lo sacaste en {cantidad_de_intentos} intentos."
-    mostrar_texto(victoria_primer_mensaje, 100, 250, color=VERDE)
-    mostrar_texto(victoria_segundo_mensaje, 200, 300, color=VERDE)
+    victoria_primer_mensaje = f"¡Haz Ganado! La palabra era {palabra}." # Le asigno a la variable el primer mensaje que va a mostrar en la pantalla de victoria.
+    victoria_segundo_mensaje = f"Lo sacaste en {cantidad_de_intentos} intentos." # le asigno a la varible el segundo mensaje que se va a mostrar en pantalla.
+    mostrar_texto(victoria_primer_mensaje, 100, 250, color=VERDE) # muestro el primer mensajes en pantalla.
+    mostrar_texto(victoria_segundo_mensaje, 200, 300, color=VERDE) # muestro el segundo mensaje en pantalla.
 
 # ----------------- DIBUJAR PANTALLA DE DERROTA -----------------
 def dibujar_derrota(palabra, letras_adivinadas):
-    # Mostrar pantalla de derrota, no hace falta que uses todos los argumentos
+    # Mostrar pantalla de derrota.
     cantidad_de_intentos = len(letras_adivinadas)
-    derrota_primer_mensaje = f"¡Haz Perdio! La palabra era {palabra}."
-    derrota_segundo_mensaje = f"No lo pudiste sacaste en {cantidad_de_intentos} intentos."
-    mostrar_texto(derrota_primer_mensaje, 120, 250, color=ROJO)
-    mostrar_texto(derrota_segundo_mensaje, 130, 300, color=ROJO)
+    derrota_primer_mensaje = f"¡Haz Perdio! La palabra era {palabra}." # le asigno a la variable el primer mensaje de derrota que se va a mostrar en la pantalla.
+    derrota_segundo_mensaje = f"No lo pudiste sacaste en {cantidad_de_intentos} intentos." # le asigno a la viable el segundo mensaje que se va a mostrar en pantalla.
+    mostrar_texto(derrota_primer_mensaje, 120, 250, color=ROJO) # muestro el primer mensaje de derrota en pantalla
+    mostrar_texto(derrota_segundo_mensaje, 130, 300, color=ROJO) # muestro el segundo mensaje de derrota en pantalla.
