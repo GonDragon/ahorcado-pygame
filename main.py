@@ -6,11 +6,14 @@ import pygame,sys,time
 import config
 
 # Importamos los otros modulos que vamos a usar
-import palabras, pantallas, personaje
+import palabras, pantallas
 
+# Importamos los modulos de los assets que vamos a usar
+from assets import personaje, moneda
 # ----------------- BUCLE PRINCIPAL -----------------
 def jugar():
-
+    personaje.init()  # Inicializamos el personaje
+    moneda.init()  # Inicializamos la moneda
     lista_palabras = palabras.cargar_palabras()
     palabra_ganadora = palabras.elegir_palabra(lista_palabras)
     errores = 0
@@ -18,6 +21,8 @@ def jugar():
     letra_actual = None
     termino = False
 
+    pj = personaje.procesar_personaje() # Procesamos el personaje para obtener su rectangulo de ubicacion
+    coin = moneda.crear_monedas() # Creamos las ubicaciones de las monedas
     reloj = pygame.time.Clock()
 
     while not termino:
@@ -32,8 +37,6 @@ def jugar():
                     if evento.unicode.isalpha():
                         letra_actual = evento.unicode.upper()
                         print(letra_actual)
-            
-            personaje.procesar_evento(evento)
 
         if letra_actual:
             verificada = palabras.verificar_letra(letra_actual, palabra_ganadora, letras_adivinadas)
@@ -41,13 +44,16 @@ def jugar():
                 config.sonido_error.play()
                 errores += 1
 
-        # Procesamos los cambios del personaje en este frame
-        personaje.procesar_personaje()
-
         # Arrancamos a dibujar. Borramos el frame anterior pintando de negro
         config.VENTANA.fill(config.NEGRO)
 
-        personaje.dibujar_personaje() # Dibujamos el personaje
+        """Funciones del pj y la moneda"""
+        personaje.procesar_evento(pj) #Funcion para que el personaje se mueva
+        personaje.dibujar_personaje(pj) # Dibujamos el personaje
+        personaje.colision_personaje(pj, coin)
+
+        moneda.dibujar_monedas(coin)
+        "------------------------------"
         pantallas.dibujar_juego(palabra_ganadora, letras_adivinadas, errores) # Encima dibujamos el juego del ahorcado
 
         termino = palabras.verificar_final(palabra_ganadora, letras_adivinadas, errores)
