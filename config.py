@@ -21,6 +21,6 @@ FUENTE = pygame.font.SysFont(None, 48)
 pygame.mixer.init()  # Inicializa el motor de sonido
 sonido_error = pygame.mixer.Sound(os.path.join(os.getcwd(), "recursos","error.wav"))  # Asegurate de tener este archivo
 sonido_moneda = pygame.mixer.Sound(os.path.join(os.getcwd(), "assets/sonidos/coin.wav"))  # Asegurate de tener este archivo
-
+sonido_moneda.set_volume(0.2)  # Ajusta el volumen del sonido de la moneda (0.0 a 1.0)
 # ------------------ CONFIGURACIONES DE JUEGO -------------------
 INTENTOS_MAXIMOS = 6

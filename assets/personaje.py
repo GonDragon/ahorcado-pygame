@@ -4,8 +4,8 @@ from config import VENTANA, ANCHO, ALTO, sonido_moneda # Podes importar cualquie
 PERSONAJE = {} 
 def init():
     PERSONAJE.update({
-        "velocidad_x": 6,  # Velocidad de movimiento horizontal
-        "velocidad_y": 6,  # Velocidad de movimiento vertical
+        "velocidad_x": 8,  # Velocidad de movimiento horizontal
+        "velocidad_y": 8,  # Velocidad de movimiento vertical
         "ancho": 60,  # Ancho del personaje
         "alto": 60,  # Alto del personaje
         "imagen": pygame.image.load("assets/img/capibara.png")  # Carga la imagen del personaje
