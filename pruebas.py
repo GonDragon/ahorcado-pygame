@@ -1,7 +1,7 @@
 import pygame, config
 import personaje,pantallas,palabras
 
-pygame.quit() # Cierro el pygame para usarlo solo cuando sea necesario en las pruebas
+# pygame.quit() # Cierro el pygame para usarlo solo cuando sea necesario en las pruebas
 
 # ================== Funciones solo para testing ==================
 def inicializar_pygame(prueba):
@@ -179,7 +179,7 @@ def prueba_dibujar_victoria():
                     probar = False
         
         config.VENTANA.fill(config.NEGRO)
-        pantallas.dibujar_victoria("FOOBAR",["F","O","B","A","R","Q","T","L"],3)
+        pantallas.dibujar_victoria("FOOBAR",["F","O","B","A","R","Q","T","L"])
 
         pygame.display.flip() # flip() actualiza el contenido de toda la pantalla.
         reloj.tick(30) # Limita los fps a 30.
@@ -205,7 +205,7 @@ def prueba_dibujar_derrota():
                     probar = False
         
         config.VENTANA.fill(config.NEGRO)
-        pantallas.dibujar_derrota("FOOBAR", ["F","O","B","A","L","K","Ñ","Z","X"], 6)
+        pantallas.dibujar_derrota("FOOBAR", ["F","O","B","A","L","K","Ñ","Z","X"])
 
         pygame.display.flip() # flip() actualiza el contenido de toda la pantalla.
         reloj.tick(30) # Limita los fps a 30.
