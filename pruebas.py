@@ -1,5 +1,6 @@
 import pygame, config
-import assets.personaje as personaje,pantallas,palabras
+import pantallas,palabras
+from assets import personaje, moneda
 
 pygame.quit() # Cierro el pygame para usarlo solo cuando sea necesario en las pruebas
 
@@ -221,6 +222,11 @@ def prueba_personaje():
     inicializar_pygame("prueba de personaje")
 
     print("Verifica si el personaje se comporta correctamente")
+    personaje.init()
+    moneda.init()
+
+    pj = personaje.procesar_personaje() # Procesamos el personaje para obtener su rectangulo de ubicacion
+    coin = moneda.crear_monedas() # Creamos las ubicaciones de las monedas
 
     reloj = pygame.time.Clock()
     probar = True
@@ -231,12 +237,15 @@ def prueba_personaje():
             match evento.type:
                 case pygame.QUIT:
                     probar = False
-            personaje.procesar_evento(evento)
         
         config.VENTANA.fill(config.NEGRO)
+        """Funciones del pj y la moneda"""
+        personaje.procesar_evento(pj) #Funcion para que el personaje se mueva
+        personaje.dibujar_personaje(pj) # Dibujamos el personaje
+        personaje.colision_personaje(pj, coin)
 
-        personaje.procesar_personaje()
-        personaje.dibujar_personaje()
+        moneda.dibujar_monedas(coin)
+        "------------------------------"
 
         pygame.display.flip() # flip() actualiza el contenido de toda la pantalla.
         reloj.tick(30) # Limita los fps a 30.
@@ -259,5 +268,5 @@ if __name__ == "__main__":
     # prueba_dibujar_derrota()
 
     # Pruebas de personaje.py
-    # prueba_personaje()
+    #prueba_personaje()
     pass

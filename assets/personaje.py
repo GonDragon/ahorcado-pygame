@@ -1,10 +1,6 @@
 import pygame
-from config import VENTANA, ANCHO, ALTO # Podes importar cualquier variable global de config
-# import config # O comentar la linea de arriba y descomentar esta para importar todo el modulo
+from config import VENTANA, ANCHO, ALTO, sonido_moneda # Podes importar cualquier variable global de config
 
-# Recomiendo guardar cualquier cosa que quieras que tenga el personaje en este diccionario
-# Como la posicion, la imagen, velocidad o lo que quieras
-# Asi podes acceder facilmente desde cualquier funcion del archivo
 PERSONAJE = {} 
 def init():
     PERSONAJE.update({
@@ -43,8 +39,6 @@ def dibujar_personaje(personaje):
 
 def colision_personaje(pj ,monedas):
     #Verifica si el personaje colisiona con alguna moneda
-    sonido_moneda = pygame.mixer.Sound("assets/sonidos/coin.wav")
-    sonido_moneda.set_volume(0.3)  # Ajusta el volumen del sonido de la moneda
     for moneda in monedas: # Recorre la lista de monedas
         # Verifica si el rectángulo del personaje colisiona con el rectángulo de la moneda
         if pj.colliderect(moneda):

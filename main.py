@@ -9,7 +9,7 @@ import config
 import palabras, pantallas
 
 # Importamos los modulos de los assets que vamos a usar
-import assets.personaje as personaje, assets.moneda as moneda
+from assets import personaje, moneda
 # ----------------- BUCLE PRINCIPAL -----------------
 def jugar():
     personaje.init()  # Inicializamos el personaje
