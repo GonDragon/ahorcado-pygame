@@ -1,5 +1,5 @@
 import pygame, config
-import personaje,pantallas,palabras
+import assets.personaje as personaje,pantallas,palabras
 
 pygame.quit() # Cierro el pygame para usarlo solo cuando sea necesario en las pruebas
 

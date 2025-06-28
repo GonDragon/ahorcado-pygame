@@ -31,12 +31,22 @@ def procesar_evento(personaje):
 
 # ----------------- Creando al personaje -----------------
 def procesar_personaje():
-    x = ANCHO - (ANCHO / 2)  # Posición inicial en el centro de la pantalla
-    y = ALTO - (ALTO / 5) # Posición inicial en la parte inferior de la pantalla
-    ubicacion = pygame.Rect(x, y, PERSONAJE["ancho"], PERSONAJE["alto"])
+    x = int(ANCHO - (ANCHO / 2))  # Posición inicial en el centro/derecha de la pantalla
+    y = int(ALTO - (ALTO / 5)) # Posición inicial en la parte inferior de la pantalla
+    ubicacion = pygame.Rect(x, y, PERSONAJE["ancho"], PERSONAJE["alto"]) # Crea un rectángulo que representa al personaje
     return ubicacion  # Devuelve el rectángulo que representa al personaje
 
 # ----------------- Dibujando al personaje -----------------
 def dibujar_personaje(personaje):
     if PERSONAJE["imagen"]: # Verifica si la imagen del personaje está cargada
         VENTANA.blit(PERSONAJE["imagen"], personaje.topleft) # Dibuja la imagen del personaje en la ventana
+
+def colision_personaje(pj ,monedas):
+    #Verifica si el personaje colisiona con alguna moneda
+    sonido_moneda = pygame.mixer.Sound("assets/sonidos/coin.wav")
+    sonido_moneda.set_volume(0.3)  # Ajusta el volumen del sonido de la moneda
+    for moneda in monedas: # Recorre la lista de monedas
+        # Verifica si el rectángulo del personaje colisiona con el rectángulo de la moneda
+        if pj.colliderect(moneda):
+            sonido_moneda.play()
+            monedas.remove(moneda) # Elimina la moneda de la lista si hay colisión

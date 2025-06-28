@@ -18,7 +18,7 @@ def crear_monedas(): # Crea una lista de rectángulos que representan las posici
                    ((ANCHO / 2) - 80, ALTO - (ALTO / 3) + 110), 
                    ((ANCHO / 2) + 300, ALTO - (ALTO / 3) + 120)] # Lista de ubicaciones donde se generarán las monedas
     for x, y in ubicaciones:
-        obj = pygame.Rect(x, y, ANCHO, ALTO) # Crea un rectángulo en la posición especificada
+        obj = pygame.Rect(int(x), int(y), MONEDA["ancho"], MONEDA["alto"]) # Crea un rectángulo en la posición especificada
         MONEDA["posiciones"].append(obj) # Añade el rectángulo a la lista de posiciones de las monedas
     return MONEDA["posiciones"] # Devuelve la lista de rectángulos que representan las monedas
 

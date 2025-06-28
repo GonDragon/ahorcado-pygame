@@ -47,11 +47,13 @@ def jugar():
         # Arrancamos a dibujar. Borramos el frame anterior pintando de negro
         config.VENTANA.fill(config.NEGRO)
 
+        """Funciones del pj y la moneda"""
         personaje.procesar_evento(pj) #Funcion para que el personaje se mueva
         personaje.dibujar_personaje(pj) # Dibujamos el personaje
+        personaje.colision_personaje(pj, coin)
 
         moneda.dibujar_monedas(coin)
-
+        "------------------------------"
         pantallas.dibujar_juego(palabra_ganadora, letras_adivinadas, errores) # Encima dibujamos el juego del ahorcado
 
         termino = palabras.verificar_final(palabra_ganadora, letras_adivinadas, errores)
