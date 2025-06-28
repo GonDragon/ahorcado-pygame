@@ -83,7 +83,7 @@ def pasar_letras_a_guiones_si(palabra, letras_adivinadas):
 
 
 # ----------------- DIBUJAR PANTALLA DE VICTORIA -----------------
-def dibujar_victoria(palabra, letras_adivinadas, errores):
+def dibujar_victoria(palabra, letras_adivinadas):
     # Mostrar pantalla de victoria, no hace falta que uses todos los argumentos
     cantidad_de_intentos = len(letras_adivinadas) # le asigno la cantidad de intentos ingresados por el usuario a la variable para luego mostrarla.
     victoria_primer_mensaje = f"¡Haz Ganado! La palabra era {palabra}." # Le asigno a la variable el primer mensaje que va a mostrar en la pantalla de victoria.
