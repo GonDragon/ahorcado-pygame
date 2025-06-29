@@ -16,6 +16,7 @@ def jugar():
     moneda.init()  # Inicializamos la moneda
     lista_palabras = palabras.cargar_palabras()
     palabra_ganadora = palabras.elegir_palabra(lista_palabras)
+    #palabra_ganadora = "PYTHON"  # Para pruebas, usamos una palabra fija
     errores = 0
     letras_adivinadas = []
     letra_actual = None
@@ -24,7 +25,7 @@ def jugar():
     pj = personaje.procesar_personaje() # Procesamos el personaje para obtener su rectangulo de ubicacion
     coin = moneda.crear_monedas() # Creamos las ubicaciones de las monedas
     reloj = pygame.time.Clock()
-
+    cant_monedas = 0  # Inicializamos la cantidad de monedas recolectadas
     while not termino:
         eventos = pygame.event.get()
         for evento in eventos:
@@ -50,9 +51,10 @@ def jugar():
         """Funciones del pj y la moneda"""
         personaje.procesar_evento(pj) #Funcion para que el personaje se mueva
         personaje.dibujar_personaje(pj) # Dibujamos el personaje
-        personaje.colision_personaje(pj, coin)
+        cant_monedas = personaje.colision_personaje(pj, coin, cant_monedas) # Colision del pj con la moneda
 
-        moneda.dibujar_monedas(coin)
+        moneda.dibujar_monedas(coin) # Dibujando la moneda
+        pantallas.mostrar_cantidad_monedas(cant_monedas, moneda.MONEDA["cantidad"])
         "------------------------------"
         pantallas.dibujar_juego(palabra_ganadora, letras_adivinadas, errores) # Encima dibujamos el juego del ahorcado
 

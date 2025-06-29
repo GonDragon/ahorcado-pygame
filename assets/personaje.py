@@ -1,7 +1,7 @@
 import pygame
 from config import VENTANA, ANCHO, ALTO, sonido_moneda # Podes importar cualquier variable global de config
 
-PERSONAJE = {} 
+PERSONAJE = {}
 def init():
     PERSONAJE.update({
         "velocidad_x": 8,  # Velocidad de movimiento horizontal
@@ -20,7 +20,7 @@ def procesar_evento(personaje):
         personaje.x -= PERSONAJE["velocidad_x"]
     if teclas[pygame.K_RIGHT] and personaje.right < ANCHO:
         personaje.x += PERSONAJE["velocidad_x"]
-    if teclas[pygame.K_UP] and personaje.top > ALTO - (ALTO / 3):
+    if teclas[pygame.K_UP] and personaje.top > ALTO - (ALTO / 3.6):
         personaje.y -= PERSONAJE["velocidad_y"]
     if teclas[pygame.K_DOWN] and personaje.bottom < ALTO:
         personaje.y += PERSONAJE["velocidad_y"]
@@ -37,10 +37,12 @@ def dibujar_personaje(personaje):
     if PERSONAJE["imagen"]: # Verifica si la imagen del personaje está cargada
         VENTANA.blit(PERSONAJE["imagen"], personaje.topleft) # Dibuja la imagen del personaje en la ventana
 
-def colision_personaje(pj ,monedas):
+def colision_personaje(pj ,monedas, cant_monedas):
     #Verifica si el personaje colisiona con alguna moneda
     for moneda in monedas: # Recorre la lista de monedas
         # Verifica si el rectángulo del personaje colisiona con el rectángulo de la moneda
         if pj.colliderect(moneda):
             sonido_moneda.play()
+            cant_monedas += 1
             monedas.remove(moneda) # Elimina la moneda de la lista si hay colisión
+    return cant_monedas  # Devuelve la cantidad de monedas recolectadas

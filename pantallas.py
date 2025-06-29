@@ -1,5 +1,5 @@
 import pygame
-from config import VENTANA, BLANCO, FUENTE, VERDE, ROJO
+from config import VENTANA, BLANCO, FUENTE, FUENTE_2, VERDE, ROJO
 
 # ----------------- DIBUJAR ESTRUCTURA DEL AHORCADO -----------------
 def dibujar_estructura():
@@ -30,6 +30,11 @@ def dibujar_linea(x_inicio, y_inicio, x_fin, y_fin, grosor, color=BLANCO):
     """
     pygame.draw.line(VENTANA, color, (x_inicio, y_inicio), (x_fin, y_fin), grosor) # 
 
+def dibujar_cuadro():
+    """
+    Propósito: Dibuja un cuadro rojo en la parte baja de la pantalla.
+    """
+    pygame.draw.rect(VENTANA, ROJO, (0, 431, 800, 169), 1) 
 
 # ----------------- DIBUJAR PARTES DEL CUERPO -----------------
 def dibujar_cuerpo(errores):
@@ -54,20 +59,25 @@ def dibujar_juego(palabra, letras_adivinadas, errores):
     # Usa las dos funciones anteriores dentro de esta
     dibujar_estructura()
     dibujar_cuerpo(errores)
-    mostrar_texto("Palabra a adivinar: ", 50, 350) # Mostrar texto de la palabra a adivinar.
+    mostrar_texto("Palabra a adivinar: ", 50, 350, FUENTE) # Mostrar texto de la palabra a adivinar.
     palabra_prueba = pasar_letras_a_guiones_si(palabra, letras_adivinadas)
-    mostrar_texto(palabra_prueba, 350, 350) # Muestra el contenido de la variable palabra_prueva en las coordenas dadas. El segundo valor corresponde al eje de las x y el segundo al de las y. 
-    mostrar_texto("Letras ingresadas: " + " ".join(letras_adivinadas), 50, 400) # Muestas las letras ingresadas por el usuario en las coordenadas dadas.
+    mostrar_texto(palabra_prueba, 350, 350, FUENTE) # Muestra el contenido de la variable palabra_prueva en las coordenas dadas. El segundo valor corresponde al eje de las x y el segundo al de las y. 
+    mostrar_texto("Letras ingresadas: " + " ".join(letras_adivinadas), 50, 400, FUENTE) # Muestas las letras ingresadas por el usuario en las coordenadas dadas.
+    mostrar_texto("¡Agarra las monedas!", 3, 435, FUENTE_2) # Muestra el texto "¡Agarra las monedas!" en las coordenadas dadas.
+    dibujar_cuadro() # Dibuja un cuadro rojo en la parte izquierda de la pantalla.
 
-
-
-def mostrar_texto(texto, x, y, color=BLANCO):
+def mostrar_texto(texto, x, y, fuente, color=BLANCO):
     """
     Propósito: mostrar texto en la pantalla en las coordenadas dadas, en color blanco por defecto.
     """
-    texto_modificado = FUENTE.render(texto, True, color) 
+    texto_modificado = fuente.render(texto, True, color) 
     VENTANA.blit(texto_modificado, (x, y))
 
+def mostrar_cantidad_monedas(cantidad, cantidad_maxima):
+    """
+    Propósito: mostrar la cantidad de monedas que se han recolectado en la parte inferior/izquierda de la pantalla.
+    """
+    mostrar_texto(f"Monedas: {cantidad}/{cantidad_maxima}", 3, 458, FUENTE_2, color=ROJO) # Muestra la cantidad de monedas en las coordenadas dadas. El primer valor corresponde al eje de las x y el segundo al de las y.
 
 def pasar_letras_a_guiones_si(palabra, letras_adivinadas):
     """
