@@ -242,7 +242,7 @@ def prueba_personaje():
         """Funciones del pj y la moneda"""
         personaje.procesar_evento(pj) #Funcion para que el personaje se mueva
         personaje.dibujar_personaje(pj) # Dibujamos el personaje
-        personaje.colision_personaje(pj, coin)
+        personaje.colision_personaje(pj, coin, 0)
 
         moneda.dibujar_monedas(coin)
         "------------------------------"
@@ -268,5 +268,5 @@ if __name__ == "__main__":
     # prueba_dibujar_derrota()
 
     # Pruebas de personaje.py
-    #prueba_personaje()
+    prueba_personaje()
     pass
