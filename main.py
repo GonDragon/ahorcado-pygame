@@ -14,36 +14,36 @@ from minijuego import personaje, moneda
 def jugar():
     personaje.init()  # Inicializamos el personaje
     moneda.init()  # Inicializamos la moneda
-    lista_palabras = palabras.cargar_palabras()
-    palabra_ganadora = palabras.elegir_palabra(lista_palabras)
+    lista_palabras = palabras.cargar_palabras() # guarda en la variable las palabras del archivo txt como una lista.
+    palabra_ganadora = palabras.elegir_palabra(lista_palabras) # se guarda en la variable una palabra random de la lista de la variable lista_palabras. 
     #palabra_ganadora = "PYTHON"  # Para pruebas, usamos una palabra fija
-    errores = 0
-    letras_adivinadas = []
-    letra_actual = None
-    termino = False
+    errores = 0 # Inicializo la variable de errores en cero.
+    letras_adivinadas = [] # inicializo la lista de letras adivinadas como una lista vacia.
+    letra_actual = None # la letra actual en None.
+    termino = False # Inicializo la variable que ejecuta el while en False.
 
     pj = personaje.procesar_personaje() # Procesamos el personaje para obtener su rectangulo de ubicacion
     coin = moneda.crear_monedas() # Creamos las ubicaciones de las monedas
     reloj = pygame.time.Clock()
     cant_monedas = 0  # Inicializamos la cantidad de monedas recolectadas
-    while not termino:
-        eventos = pygame.event.get()
-        for evento in eventos:
+    while not termino: # Mientras que termino no sea False se ejecuta el while.
+        eventos = pygame.event.get() # guarda en eventos todos los eventos que ocurren en el juego.
+        for evento in eventos: # para cada evento en eventos se ejecutará lo siguiente.
             
-            match evento.type:
-                case pygame.QUIT:
-                    pygame.quit()
-                    sys.exit()
-                case pygame.KEYDOWN:
-                    if evento.unicode.isalpha():
-                        letra_actual = evento.unicode.upper()
-                        print(letra_actual)
+            match evento.type: # va a machear el evento con los siguiente casos.
+                case pygame.QUIT: # si el evento es QUIT: 
+                    pygame.quit() # Sale de pygame.
+                    sys.exit() # sale del sistema.
+                case pygame.KEYDOWN: # en el caso de que se precione un tecla:
+                    if evento.unicode.isalpha(): # si el código de la tecla preciona es una letra
+                        letra_actual = evento.unicode.upper() # guarda la letra en mayúscula en la variable
+                        print(letra_actual) # imprime en la consola la letra.
 
         if letra_actual:
-            verificada = palabras.verificar_letra(letra_actual, palabra_ganadora, letras_adivinadas)
-            if not verificada:
-                config.sonido_error.play()
-                errores += 1
+            verificada = palabras.verificar_letra(letra_actual, palabra_ganadora, letras_adivinadas) # guarda en la variable si la letra ingresada pertenece a la palabra a adivinar.
+            if not verificada: # En caso de que no esté:
+                config.sonido_error.play() # reproduce el sonido de error.
+                errores += 1 # suma en uno la cantidad de errores 
 
         # Arrancamos a dibujar. Borramos el frame anterior pintando de negro
         config.VENTANA.fill(config.NEGRO)
@@ -58,8 +58,8 @@ def jugar():
         "------------------------------"
         pantallas.dibujar_juego(palabra_ganadora, letras_adivinadas, errores) # Encima dibujamos el juego del ahorcado
 
-        termino = palabras.verificar_final(palabra_ganadora, letras_adivinadas, errores)
-        letra_actual = None
+        termino = palabras.verificar_final(palabra_ganadora, letras_adivinadas, errores) # guarda en la variable un valor booleano de si hay que terminar en juego o no.
+        letra_actual = None # la letra atual pasa a ser None otra vez.
         
         pygame.display.flip() # flip() actualiza el contenido de toda la pantalla.
         reloj.tick(30) # Limita los fps a 30.
@@ -67,17 +67,17 @@ def jugar():
     # Borramos el ultimo frame del juego
     config.VENTANA.fill(config.NEGRO)
 
-    if errores < config.INTENTOS_MAXIMOS:
-        pantallas.dibujar_victoria(palabra_ganadora, letras_adivinadas)
-    else:
-        pantallas.dibujar_derrota(palabra_ganadora, letras_adivinadas)
+    if errores < config.INTENTOS_MAXIMOS: # si la cantidad de errores es menor a la cantidad de intentos maximos.
+        pantallas.dibujar_victoria(palabra_ganadora, letras_adivinadas) # imprime la pantalla de victoria.
+    else: # sino
+        pantallas.dibujar_derrota(palabra_ganadora, letras_adivinadas) # imprime la pantalla de derrota.
 
     pygame.display.flip() # flip() actualiza el contenido de toda la pantalla, para que veamos la pantalla final.
 
     # Dejamos que la pantalla se vea por tres segundos antes de cerrar
-    time.sleep(3)
-    pygame.quit()
-    sys.exit()
+    time.sleep(3) # la pantalla espera 3 segundo antes de ejecutar las siguientes lineas del código.
+    pygame.quit() # sale de pygame.
+    sys.exit() # sale del sistema.
 
 if __name__ == "__main__":
     jugar()
