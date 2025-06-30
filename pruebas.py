@@ -1,6 +1,6 @@
 import pygame, config
 import pantallas,palabras
-from assets import personaje, moneda
+from minijuego import personaje, moneda
 
 # pygame.quit() # Cierro el pygame para usarlo solo cuando sea necesario en las pruebas
 
