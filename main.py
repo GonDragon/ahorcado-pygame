@@ -68,9 +68,9 @@ def jugar():
     config.VENTANA.fill(config.NEGRO)
 
     if errores < config.INTENTOS_MAXIMOS:
-        pantallas.dibujar_victoria(palabra_ganadora, letras_adivinadas, errores)
+        pantallas.dibujar_victoria(palabra_ganadora, letras_adivinadas)
     else:
-        pantallas.dibujar_derrota(palabra_ganadora, letras_adivinadas, errores)
+        pantallas.dibujar_derrota(palabra_ganadora, letras_adivinadas)
 
     pygame.display.flip() # flip() actualiza el contenido de toda la pantalla, para que veamos la pantalla final.
 

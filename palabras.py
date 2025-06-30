@@ -15,7 +15,7 @@ def cargar_palabras():
 def elegir_palabra(lista_palabras):
     # Elegir una palabra aleatoria de la lista y convertirla a mayúsculas
     indice_random = random.randint(0, len(lista_palabras) - 1)
-    return lista_palabras[indice_random]
+    return lista_palabras[indice_random].upper()
 
 # ----------------- VERIFICAR LETRA -----------------
 def verificar_letra(letra, palabra, letras_adivinadas):
