@@ -87,6 +87,8 @@ def pasar_letras_a_guiones_si(palabra, letras_adivinadas):
     for i in palabra: # Para cada letra en palabra, realiza lo siguiente:
         if i.upper() in letras_adivinadas: # Si la letra en mayúscula esta en la lista de letras_adivinadas:
             palabra_en_guiones += i.upper() # Le concatena a la variable la letra en mayúscula.
+        elif i == " ":
+             palabra_en_guiones += "  " # En caso de que haya un espacio coloca dos espacios para que se note que hay dos palabras.
         else: # si no se cumple la condición:
             palabra_en_guiones += "_ " # Se le concatena un guión y un espacio en blanco a la variable.
     return palabra_en_guiones # Retorna palabra_en guiones.
