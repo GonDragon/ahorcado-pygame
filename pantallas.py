@@ -105,7 +105,7 @@ def dibujar_victoria(palabra, letras_adivinadas):
 def dibujar_derrota(palabra, letras_adivinadas):
     # Mostrar pantalla de derrota.
     cantidad_de_intentos = len(letras_adivinadas)
-    derrota_primer_mensaje = f"¡Haz Perdio! La palabra era {palabra}." # le asigno a la variable el primer mensaje de derrota que se va a mostrar en la pantalla.
-    derrota_segundo_mensaje = f"No lo pudiste sacaste en {cantidad_de_intentos} intentos." # le asigno a la viable el segundo mensaje que se va a mostrar en pantalla.
+    derrota_primer_mensaje = f"¡Haz Perdido! La palabra era {palabra}." # le asigno a la variable el primer mensaje de derrota que se va a mostrar en la pantalla.
+    derrota_segundo_mensaje = f"No lo pudiste sacar en {cantidad_de_intentos} intentos." # le asigno a la viable el segundo mensaje que se va a mostrar en pantalla.
     mostrar_texto(derrota_primer_mensaje, 120, 250, color=ROJO) # muestro el primer mensaje de derrota en pantalla
     mostrar_texto(derrota_segundo_mensaje, 130, 300, color=ROJO) # muestro el segundo mensaje de derrota en pantalla.
