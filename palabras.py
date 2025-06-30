@@ -1,11 +1,11 @@
-import random, config
+import random, config, os
 
 # ----------------- CARGAR PALABRAS DESDE ARCHIVO -----------------
 def cargar_palabras():
     # Leer las palabras desde un archivo de texto y devolver una lista
     # Asegurate de tener un archivo llamado palabras.txt con una palabra por línea
     try:
-        with open("palabras.txt", "r", encoding="utf-8")as f:
+        with open(os.path.join(os.getcwd(), "recursos", "palabras.txt"), "r", encoding="utf-8")as f:
             palabras = f.readlines()
             return [palabra.strip() for palabra in palabras]
     except:
