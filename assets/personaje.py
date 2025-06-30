@@ -1,4 +1,4 @@
-import pygame
+import pygame, os
 from config import VENTANA, ANCHO, ALTO, sonido_moneda # Podes importar cualquier variable global de config
 
 PERSONAJE = {}
@@ -8,7 +8,7 @@ def init():
         "velocidad_y": 8,  # Velocidad de movimiento vertical
         "ancho": 60,  # Ancho del personaje
         "alto": 60,  # Alto del personaje
-        "imagen": pygame.image.load("assets/img/capibara.png")  # Carga la imagen del personaje
+        "imagen": pygame.image.load(os.path.join(os.getcwd(), "recursos", "img", "capibara.png"))
     })
     PERSONAJE["imagen"] = pygame.transform.scale(PERSONAJE["imagen"], (PERSONAJE["ancho"], PERSONAJE["alto"]))
 # ----------------- Eventos del personaje -----------------

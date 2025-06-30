@@ -1,11 +1,11 @@
-import pygame
+import pygame, os
 from config import VENTANA, ANCHO, ALTO
 MONEDA = {} # Diccionario para almacenar las propiedades de la moneda
 def init():
     MONEDA.update({  # Velocidad de movimiento horizontal
         "ancho": 50,  # Ancho del obstáculo
         "alto": 50,  # Alto del obstáculo
-        "imagen": pygame.image.load("assets/img/moneda_g.png"),  # Carga la imagen del obstáculo
+        "imagen": pygame.image.load(os.path.join(os.getcwd(), "recursos", "img", "moneda_g.png")),  # Carga la imagen del obstáculo
         "posiciones": [],  # Lista para almacenar las posiciones de los obstáculos
         "cantidad": 0  # Cantidad de monedas que se generarán
     })
