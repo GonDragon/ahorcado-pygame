@@ -77,7 +77,10 @@ def mostrar_cantidad_monedas(cantidad, cantidad_maxima):
     """
     Propósito: mostrar la cantidad de monedas que se han recolectado en la parte inferior/izquierda de la pantalla.
     """
-    mostrar_texto(f"Monedas: {cantidad}/{cantidad_maxima}", 3, 458, FUENTE_2, color=ROJO) # Muestra la cantidad de monedas en las coordenadas dadas. El primer valor corresponde al eje de las x y el segundo al de las y.
+    if cantidad <= cantidad_maxima: # Si la cantidad de monedas es menor o igual a la cantidad máxima:
+        mostrar_texto(f"Monedas: {cantidad}/{cantidad_maxima}", 3, 458, FUENTE_2, color=ROJO)
+    else: # Si la cantidad de monedas es mayor a la cantidad máxima:
+        mostrar_texto(f"¡ya tienes todas las monedas! Tenes una nueva oportunidad", 3, 458, FUENTE_2, color=VERDE)
 
 def pasar_letras_a_guiones_si(palabra, letras_adivinadas):
     """

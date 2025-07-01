@@ -16,7 +16,7 @@ def jugar():
     moneda.init()  # Inicializamos la moneda
     lista_palabras = palabras.cargar_palabras()
     palabra_ganadora = palabras.elegir_palabra(lista_palabras)
-    #palabra_ganadora = "PYTHON"  # Para pruebas, usamos una palabra fija
+
     errores = 0
     letras_adivinadas = []
     letra_actual = None
@@ -53,6 +53,10 @@ def jugar():
         personaje.dibujar_personaje(pj) # Dibujamos el personaje
         cant_monedas = personaje.colision_personaje(pj, coin, cant_monedas) # Colision del pj con la moneda
 
+        if cant_monedas == moneda.MONEDA["cantidad"]: # Verifica si agarro todas las monedas
+            errores -= 1 # Le resta un error
+            cant_monedas += 1 # Se suma uno a la cantidad de monedas asi deja de restarle al error
+            
         moneda.dibujar_monedas(coin) # Dibujando la moneda
         pantallas.mostrar_cantidad_monedas(cant_monedas, moneda.MONEDA["cantidad"])
         "------------------------------"
@@ -60,7 +64,7 @@ def jugar():
 
         termino = palabras.verificar_final(palabra_ganadora, letras_adivinadas, errores)
         letra_actual = None
-        
+
         pygame.display.flip() # flip() actualiza el contenido de toda la pantalla.
         reloj.tick(30) # Limita los fps a 30.
 
