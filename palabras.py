@@ -1,4 +1,5 @@
-import random, config, os  # Importa los módulos necesarios: random para números aleatorios, config para configuraciones propias, y os para manipulación de rutas de archivos.
+import random, os # importamos librerias de python
+import config, validaciones # importamos modulos propios
 
 # ----------------- CARGAR PALABRAS DESDE ARCHIVO -----------------
 def cargar_palabras():
@@ -11,10 +12,14 @@ def cargar_palabras():
             return [palabra.strip() for palabra in palabras]  # Retorna la lista de palabras, eliminando los saltos de línea y espacios
     except IOError:
         print("No se cargo correctamente")  # Si ocurre un error (por ejemplo, el archivo no existe), se muestra un mensaje
+        return ["palabra"] # Devuelve una lista con una sola palabra para que de todas formas el juego pueda continuar
 
 # ----------------- ELEGIR PALABRA AL AZAR -----------------
 def elegir_palabra(lista_palabras):
     # Función que elige una palabra aleatoria de la lista y la convierte a mayúsculas
+
+    # Validaciones
+    validaciones.validar_lista_palabras(lista_palabras)
 
     indice_random = random.randint(0, len(lista_palabras) - 1)  # Genera un número aleatorio entre 0 y la cantidad de palabras - 1
     return lista_palabras[indice_random].upper()  # Retorna la palabra en mayúsculas
@@ -22,6 +27,10 @@ def elegir_palabra(lista_palabras):
 # ----------------- VERIFICAR LETRA -----------------
 def verificar_letra(letra, palabra, letras_adivinadas):
     # Función que verifica si la letra está en la palabra y si ya fue adivinada
+
+    # Validaciones
+    validaciones.validar_letra(letra)
+    validaciones.validar_palabra(palabra)
 
     if letra in letras_adivinadas:  # Si la letra ya fue adivinada antes
         return False  # Se considera como un nuevo error
@@ -32,6 +41,11 @@ def verificar_letra(letra, palabra, letras_adivinadas):
 # ----------------- VERIFICAR FINAL -----------------
 def verificar_final(palabra, letras_adivinadas, errores):
     # Función que determina si el juego debe terminar
+
+    # Validaciones
+    validaciones.validar_palabra(palabra)
+    validaciones.validar_lista_letras(letras_adivinadas)
+    validaciones.validar_errores(errores)
 
     if errores >= config.INTENTOS_MAXIMOS:  # Si la cantidad de errores alcanza el máximo permitido
         return True  # El juego termina
