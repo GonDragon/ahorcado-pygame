@@ -24,7 +24,7 @@ def jugar():
 
     pj = personaje.procesar_personaje() # Procesamos el personaje para obtener su rectangulo de ubicacion
     coin = moneda.crear_monedas() # Creamos las ubicaciones de las monedas
-    reloj = pygame.time.Clock()
+    reloj = pygame.time.Clock() # Ayuda a meedir el tiempo del juego.
     cant_monedas = 0  # Inicializamos la cantidad de monedas recolectadas
     while not termino: # Mientras que termino no sea False se ejecuta el while.
         eventos = pygame.event.get() # guarda en eventos todos los eventos que ocurren en el juego.
@@ -58,12 +58,12 @@ def jugar():
             cant_monedas += 1 # Se suma uno a la cantidad de monedas asi deja de restarle al error
             
         moneda.dibujar_monedas(coin) # Dibujando la moneda
-        pantallas.mostrar_cantidad_monedas(cant_monedas, moneda.MONEDA["cantidad"])
-        "------------------------------"
+        pantallas.mostrar_cantidad_monedas(cant_monedas, moneda.MONEDA["cantidad"]) # muestra en la pantalla la cantidad de momedas obtenidas hasta el momento y la cantidad total.
+        """------------------------------"""
         pantallas.dibujar_juego(palabra_ganadora, letras_adivinadas, errores) # Encima dibujamos el juego del ahorcado
 
         termino = palabras.verificar_final(palabra_ganadora, letras_adivinadas, errores) # guarda en la variable un valor booleano de si hay que terminar en juego o no.
-        letra_actual = None # la letra atual pasa a ser None otra vez.
+        letra_actual = None # la letra atual pasa a ser None otra vez. Sin esto se seguira procesando la misma letra sin parar.
 
         pygame.display.flip() # flip() actualiza el contenido de toda la pantalla.
         reloj.tick(30) # Limita los fps a 30.
