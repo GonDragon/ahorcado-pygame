@@ -70,8 +70,8 @@ def mostrar_texto(texto, x, y, fuente, color=BLANCO):
     """
     Propósito: mostrar texto en la pantalla en las coordenadas dadas, en color blanco por defecto.
     """
-    texto_modificado = fuente.render(texto, True, color) 
-    VENTANA.blit(texto_modificado, (x, y))
+    texto_modificado = fuente.render(texto, True, color)  # le asigno a la variable el texto que se quiera ingresar con el tipo de fuente ingresada.
+    VENTANA.blit(texto_modificado, (x, y)) # se coloca texto_modificado en la posición x e y ingresadas.
 
 def mostrar_cantidad_monedas(cantidad, cantidad_maxima):
     """

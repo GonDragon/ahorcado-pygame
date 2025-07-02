@@ -8,15 +8,15 @@ def init():
         "velocidad_y": 8,  # Velocidad de movimiento vertical
         "ancho": 60,  # Ancho del personaje
         "alto": 60,  # Alto del personaje
-        "imagen": pygame.image.load(os.path.join(os.getcwd(), "recursos", "img", "capibara.png"))
+        "imagen": pygame.image.load(os.path.join(os.getcwd(), "recursos", "img", "capibara.png")) # imagen que se le asignará al personaje.
     })
-    PERSONAJE["imagen"] = pygame.transform.scale(PERSONAJE["imagen"], (PERSONAJE["ancho"], PERSONAJE["alto"]))
+    PERSONAJE["imagen"] = pygame.transform.scale(PERSONAJE["imagen"], (PERSONAJE["ancho"], PERSONAJE["alto"])) # se ajusta la imagen al tamaño del personaje.
 # ----------------- Eventos del personaje -----------------
 def procesar_evento(personaje):
     # Recibe todos los eventos de pygame.event.get()
     # Asi que lo podes usar para detectar teclas precionadas con evento.type == pygame.KEYDOWN, por ejemplo
-    teclas = pygame.key.get_pressed()
-    if teclas[pygame.K_LEFT] and personaje.left > 0:
+    teclas = pygame.key.get_pressed() # se obtiene la tecla precionada y se la asigana a la variable tecla.
+    if teclas[pygame.K_LEFT] and personaje.left > 0: 
         personaje.x -= PERSONAJE["velocidad_x"]
     if teclas[pygame.K_RIGHT] and personaje.right < ANCHO:
         personaje.x += PERSONAJE["velocidad_x"]
@@ -41,8 +41,8 @@ def colision_personaje(pj ,monedas, cant_monedas):
     #Verifica si el personaje colisiona con alguna moneda
     for moneda in monedas: # Recorre la lista de monedas
         # Verifica si el rectángulo del personaje colisiona con el rectángulo de la moneda
-        if pj.colliderect(moneda):
-            sonido_moneda.play()
-            cant_monedas += 1
+        if pj.colliderect(moneda): # si el personaje colisiona con alguna moneda se ejecuta lo siguiente:
+            sonido_moneda.play() # se reproduce le sonido de la moneda.
+            cant_monedas += 1 # se le suma uno a cant_monedas.
             monedas.remove(moneda) # Elimina la moneda de la lista si hay colisión
     return cant_monedas  # Devuelve la cantidad de monedas recolectadas
